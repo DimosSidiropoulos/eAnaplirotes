@@ -119,54 +119,56 @@ async function performSearch() {
 </script>
 
 <template>
-  <div v-if="dataArrived === false || chartData.labels.length" class="w-full sm:h-[30rem] flex-none sm:flex justify-center items-center gap-40 mb-10 px-2">
-    <Line
-      id="countChart"
-      :options="chartOptions"
-      :data="chartData"
-      width="100"
-      height="100"
-    />
-    <Line
-      v-if="chartLabelsMin"
-      id="minChart"
-      :options="chartOptionsMin"
-      :data="chartDataMin"
-      width="100"
-      height="100"
-    />
-  </div>
-  <v-table v-if="dataArrived === false || chartData.labels.length">
-    <thead>
-      <tr>
-        <th class="text-left">
-          Χρονιά
-        </th>
-        <th class="text-left">
-          Αναπληρωτές
-        </th>
-        <th v-if="chartLabelsMin" class="text-left">
-          Ελάχιστα μόρια εισαγωγής
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        v-for="(item, index) in chartLabels"
-        :key="index"
-      >
-        <td>{{ item }}</td>
-        <td>{{ chartData?.datasets[0]?.data[index] }}</td>
-        <td v-if="chartLabelsMin">
-          {{ chartDataMin?.datasets[0]?.data[index] }}
-        </td>
-      </tr>
-    </tbody>
-  </v-table>
-  <div v-if="dataArrived === true && !chartData.labels.length" class="h-full flex flex-col justify-center items-center w-full">
-    <img width="400" height="400" class="absolute top-5" src="../assets/error-404-4344461-3613889.webp" alt="">
-    <h1 class="text-xl font-bold mt-36">
-      Δεν βρέθηκαν αποτελέσματα για την αναζήτησή σας, επιστρέψτε στην <span class="text-cyan-600 cursor-pointer underline" @click="$router.push('/')">αρχική</span>.
-    </h1>
+  <div class="w-full h-full">
+    <div v-if=" chartData.labels.length" class="w-full sm:h-[30rem] flex-none sm:flex justify-center items-center gap-40 mb-10 px-2">
+      <Line
+        id="countChart"
+        :options="chartOptions"
+        :data="chartData"
+        width="100"
+        height="100"
+      />
+      <Line
+        v-if="chartLabelsMin"
+        id="minChart"
+        :options="chartOptionsMin"
+        :data="chartDataMin"
+        width="100"
+        height="100"
+      />
+    </div>
+    <v-table v-if=" chartData.labels.length">
+      <thead>
+        <tr>
+          <th class="text-left">
+            Χρονιά
+          </th>
+          <th class="text-left">
+            Αναπληρωτές
+          </th>
+          <th v-if="chartLabelsMin" class="text-left">
+            Ελάχιστα μόρια εισαγωγής
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="(item, index) in chartLabels"
+          :key="index"
+        >
+          <td>{{ item }}</td>
+          <td>{{ chartData?.datasets[0]?.data[index] }}</td>
+          <td v-if="chartLabelsMin">
+            {{ chartDataMin?.datasets[0]?.data[index] }}
+          </td>
+        </tr>
+      </tbody>
+    </v-table>
+    <div v-if="dataArrived === true && !chartData.labels.length" class="h-full flex flex-col justify-center items-center w-full">
+      <img width="400" height="400" class="absolute top-5" src="../assets/error-404-4344461-3613889.webp" alt="">
+      <h1 class="text-xl font-bold mt-36">
+        Δεν βρέθηκαν αποτελέσματα για την αναζήτησή σας, επιστρέψτε στην <span class="text-cyan-600 cursor-pointer underline" @click="$router.push('/')">αρχική</span>.
+      </h1>
+    </div>
   </div>
 </template>

@@ -3,7 +3,7 @@ import Hero from '../components/Hero.vue'
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col justify-center items-center">
+  <div class="w-full h-full flex flex-col justify-center items-center overflow-auto">
     <Hero />
   </div>
 </template>

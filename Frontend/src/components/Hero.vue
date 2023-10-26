@@ -8,7 +8,6 @@ import Dialog from './Dialog.vue'
 const router = useRouter()
 const nameArray = ref([])
 const name = ref('')
-const search = ref('')
 const loading = ref()
 const synonymyModal = ref(false)
 const filteredArray = ref()
@@ -20,7 +19,7 @@ const typos = ref()
 const klados = ref()
 const perioxh = ref()
 const dieythynsh = ref()
-const toggleState = ref(false)
+const searchType = ref(false)
 
 const userInput = computed(() => {
   return name.value !== ''
@@ -124,8 +123,9 @@ axios.get('http://localhost:5173/dieythynsh').then((response) => {
 </script>
 
 <template>
-  <div>
-    <div v-if="!toggleState" class="flex flex-col justify-center items-center">
+  <div class="mb-11">
+    <v-switch v-model="searchType" hide-details class="text-cyan-600 w-56" :class="searchType ? 'ml-0' : 'ml-5'" :label="searchType === false ? 'Γενική αναζήτηση' : 'Προσωπική Αναζήτηση'" />
+    <div v-if="searchType">
       <v-autocomplete
         v-model="name"
         hide-no-data
