@@ -145,6 +145,7 @@ async function performSearch() {
           </th>
           <th class="text-left">
             Αναπληρωτές
+            <span v-if="chartData?.datasets?.length > 1">(Άθροισμα)</span>
           </th>
           <th v-if="chartLabelsMin" class="text-left">
             Ελάχιστα μόρια εισαγωγής
@@ -157,7 +158,13 @@ async function performSearch() {
           :key="index"
         >
           <td>{{ item }}</td>
-          <td>{{ chartData?.datasets[0]?.data[index] }}</td>
+          <td>
+            {{
+              chartData?.datasets?.length > 1
+                ? chartData.datasets.reduce((sum, dataset) => sum + (dataset.data[index] || 0), 0)
+                : chartData?.datasets[0]?.data[index]
+            }}
+          </td>
           <td v-if="chartLabelsMin">
             {{ chartDataMin?.datasets[0]?.data[index] }}
           </td>
