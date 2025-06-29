@@ -10,7 +10,7 @@
         variant="text"
         class="mx-2"
         rounded="xl"
-        @click="$router.push('/api')"
+        @click="$router.push('/apiDoc')"
       >
         API Documentation
       </v-btn>

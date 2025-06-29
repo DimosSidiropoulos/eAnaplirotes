@@ -53,7 +53,7 @@ const { Eponymo, Onoma, Patronymo } = route.params
 
 onMounted(async () => {
   await axios
-    .get<Anapliroths>(`http://localhost:5173/user/${Eponymo}/${Onoma}/${Patronymo}`)
+    .get<Anapliroths>(`https://eanaplirotes.iee.ihu.gr/api/user/${Eponymo}/${Onoma}/${Patronymo}`)
     .then((response) => {
       userData.value = response.data
       for (let i = 0; i < response.data.length; i++) {

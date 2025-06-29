@@ -67,7 +67,7 @@ const chartOptionsMin = ref({
   },
 })
 
-const chartData = computed(() => ({
+const chartData: any = computed(() => ({
   labels: chartLabels.value,
   datasets: data?.value?.map(item => ({
     label: item.label,
@@ -75,7 +75,7 @@ const chartData = computed(() => ({
   })),
 }))
 
-const chartDataMin = computed(() => ({
+const chartDataMin: any = computed(() => ({
   labels: chartLabelsMin.value,
   datasets: dataMin?.value?.map(item => ({
     label: item.label,
@@ -90,7 +90,7 @@ onMounted(async () => {
 async function performSearch() {
   const params = route.query
 
-  await axios.get('http://localhost:5173/search', { params })
+  await axios.get('https://eanaplirotes.iee.ihu.gr/api/search', { params })
     .then((response) => {
       chartLabels.value = response.data.anaplirotesCount.labels
       data.value = response.data.anaplirotesCount.datasets.map(

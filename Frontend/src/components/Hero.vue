@@ -54,7 +54,7 @@ function getNames(names: string) {
   loading.value = true
   axios
     .post(
-      'http://localhost:5173/anaplirotes',
+      'https://eanaplirotes.iee.ihu.gr/api/anaplirotes',
       {
         name: name.value,
       },
@@ -77,7 +77,7 @@ function getNames(names: string) {
 function getInfo() {
   const infoName = name.value.replace(/ /g, '_')
   axios
-    .get(`http://localhost:5173/onoma/${infoName}`)
+    .get(`https://eanaplirotes.iee.ihu.gr/api/onoma/${infoName}`)
     .then((response) => {
       filteredArray.value = groupData(response.data as Anapliroths)
 
@@ -108,16 +108,16 @@ function customFilter(item: string, nameArray: string) {
   return queries.every(query => names.some(name => name.includes(query)))
 }
 
-axios.get('http://localhost:5173/typos').then((response) => {
+axios.get('https://eanaplirotes.iee.ihu.gr/api/typos').then((response) => {
   typoi.value = response.data
 })
-axios.get('http://localhost:5173/klados').then((response) => {
+axios.get('https://eanaplirotes.iee.ihu.gr/api/klados').then((response) => {
   kladoi.value = response.data
 })
-axios.get('http://localhost:5173/perioxh').then((response) => {
+axios.get('https://eanaplirotes.iee.ihu.gr/api/perioxh').then((response) => {
   perioxes.value = response.data
 })
-axios.get('http://localhost:5173/dieythynsh').then((response) => {
+axios.get('https://eanaplirotes.iee.ihu.gr/api/dieythynsh').then((response) => {
   dieythynseis.value = response.data
 })
 </script>

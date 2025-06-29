@@ -24,7 +24,7 @@ const router = createRouter({
       component: SearchView,
     },
     {
-      path: '/api',
+      path: '/apiDoc',
       name: 'Api',
       component: ApiView,
     },
